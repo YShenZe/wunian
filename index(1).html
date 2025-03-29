@@ -1,0 +1,331 @@
+<html>
+ <head>
+  <meta id="v24" charset="UTF-8"> 
+  <meta id="v25" name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title id="v26">无限影院-念网创</title> 
+ </head> 
+   <img src="bt.png" id="bt-img" width="100%"> 
+ <body id="v35" style="background-image: url(&quot;bj/bg3.jpg&quot;);"> 
+  <div class="btbj"></div>
+  <script>
+    // 定义点击计数器和定时器
+    let clickCount = 0;
+    let clickTimer = null;
+
+    // 获取图片元素
+    const btImg = document.getElementById('bt-img');
+
+    // 添加点击事件
+    btImg.addEventListener('click', function() {
+        // 如果是第一次点击，启动定时器
+        if (clickTimer === null) {
+            clickTimer = setTimeout(function() {
+                // 如果3秒内没有达到8次点击，重置计数器和定时器
+                clickCount = 0;
+                clickTimer = null;
+            }, 3000);
+        }
+
+        // 增加点击计数
+        clickCount++;
+
+        // 如果3秒内点击次数达到8次，跳转到Rear.html
+        if (clickCount >= 8) {
+            clearTimeout(clickTimer); // 清除定时器
+            clickTimer = null; // 重置定时器
+            clickCount = 0; // 重置点击计数
+            window.location.href = 'Rear.html'; // 跳转到Rear.html
+        }
+    });
+</script>
+  <style id="v22">
+  .btbj {
+      position: fixed; /* 固定背景图片 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://api.mmp.cc/api/pcwallpaper?category=cartoon&type=jpg'); /* 替换为你的背景图片路径 */
+      background-size: cover; /* 调整图片大小以覆盖整个背景 */
+      background-position: center; /* 居中对齐背景图片 */
+      background-attachment: fixed; /* 固定背景图片 */
+      z-index: -1; /* 确保背景图片在其他内容的后面 */
+    }
+       p {
+            color: white; /* 字体颜色为白色 */
+            text-shadow: 
+                -1px -1px 0 #000, /* 左上黑色阴影 */
+                 1px -1px 0 #000, /* 右上黑色阴影 */
+                -1px 1px 0 #000,  /* 左下黑色阴影 */
+                 1px 1px 0 #000;  /* 右下黑色阴影 */
+            font-size: 12px; /* 字体大小 */
+            font-weight: bold; /* 字体加粗 */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .form-row {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+            font-size: 12px;
+        }
+        
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 9px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        #modal-content {
+            width: 100%;
+            max-width: 900px;
+            height: 60%;
+            max-height: 250px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        #close-btn {
+            position: absolute;
+            top: 520px;
+            right: 40px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            z-index: 1001;
+        }
+        
+        #close-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .select-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-group input[type="text"] {
+            flex: 1;
+        }
+        
+        .input-group button {
+            width: auto;
+        }
+    </style> 
+  <script src="js/jq.js"></script> 
+  <div id="v2" class="container"> 
+   <h1 id="v3">视频解析播放器</h1> 
+   <div id="v4" class="form-row"> 
+    <div id="v5" class="form-group" style="flex: 2;"> 
+     <input type="text" id="search-input" placeholder="勿信广告(可能被境外势力插入广告)"> 
+    </div> 
+    <div id="v6" class="form-group" style="flex: 1;"> 
+     <button id="search-btn">搜索影片</button> 
+    </div> 
+   </div> 
+   <div id="v7" class="form-group select-group"> 
+    <select id="url-select"> <option id="v16" value="https://jx.hls.one/?url=" selected="">VIP解析接口1［最好用的］［强力推荐👍］</option> <option id="v17" value="https://jx.973973.xyz/?url=">VIP解析接口2［弹幕互动］［功能最多🔝］</option> <option id="v18" value="https://jx.nnxv.cn/tv.php?url=">简洁播放接口3［最简洁］</option> <option id="v19" value="https://g1907.top/?jx=">稳定接口4［最稳定］</option> <option id="v20" value="https://jx.hls.one/?url=">备用接口</option> </select> 
+   </div> 
+   <div id="v13" class="form-row"> 
+    <div id="v14" class="form-group" style="flex: 2;"> 
+     <input type="text" id="user-input" placeholder="请输入获取的VIP分享链接"> 
+    </div> 
+    <div id="v15" class="form-group" style="flex: 1; display: flex; gap: 10px;"> 
+     <button id="open-btn">播放</button> 
+     <button id="expand-btn">展开</button> 
+    </div> 
+   </div> 
+  </div> 
+  <!-- 弹窗 --> 
+  <div id="modal"> 
+   <button id="close-btn">×</button> 
+   <!-- 关闭按钮 --> 
+   <button id="fullscreen-btn" style="position: absolute; top: 521px; right: 85px; z-index: 1001;">全屏</button> 
+   <!-- 全屏按钮 --> 
+   <div id="modal-content"> 
+    <iframe id="iframe"></iframe> 
+   </div> 
+  </div> 
+  <script>
+        // 默认选择第一个选项
+        document.getElementById('url-select').addEventListener('change', function() {
+            localStorage.setItem('selectedUrl', this.value);
+        });
+
+        // 页面加载时自动选择默认地址
+        window.onload = function() {
+            const savedUrl = localStorage.getItem('selectedUrl');
+            if (savedUrl) {
+                document.getElementById('url-select').value = savedUrl;
+            }
+        };
+
+        // 搜索按钮点击事件
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const searchInput = document.getElementById('search-input').value;
+            const url = "https://z1.m1907.top/?jx=" + encodeURIComponent(searchInput);
+            document.getElementById('iframe').src = url;
+            document.getElementById('modal').style.display = 'flex';
+        });
+
+        document.getElementById('open-btn').addEventListener('click', function() {
+            const selectedUrl = document.getElementById('url-select').value;
+            const userInput = document.getElementById('user-input').value;
+            const url = selectedUrl + encodeURIComponent(userInput);
+            document.getElementById('iframe').src = url;
+            document.getElementById('modal').style.display = 'flex';
+        });
+
+        // 新增展开弹窗按钮的点击事件
+        document.getElementById('expand-btn').addEventListener('click', function() {
+            document.getElementById('modal').style.display = 'flex';
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        // 全屏按钮点击事件
+        document.getElementById('fullscreen-btn').addEventListener('click', function() {
+            const iframe = document.getElementById('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari & IE
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+
+            // 切换为横屏状态
+            iframe.style.transform = 'rotate(90deg)';
+            iframe.style.transformOrigin = 'left top';
+        });
+
+        // 监听全屏状态变化，退出全屏时恢复原始状态
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                const iframe = document.getElementById('iframe');
+                iframe.style.transform = 'none';
+                iframe.style.transformOrigin = 'none';
+            }
+        });
+
+        // 监听iframe中的链接点击事件
+        document.getElementById('iframe').addEventListener('load', function() {
+            const iframe = document.getElementById('iframe');
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+            iframeDocument.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                    event.preventDefault();
+                }
+            });
+        });
+      
+    </script> 
+    <center>
+      <b>
+  <h2 style="color: black; background-color: #f0f0f0; border-radius: 10px; padding: 10px;">
+    本站由
+    <a href="https://memgze.vip/" style="color: blue;">梦泽</a>
+    赞助支持，博客：https://mengze.vip/
+  </h2>
+</b>
+    </center>
+  <h2 id="v27">请仔细用户使用条例</h2> 
+  <p id="v28">尊敬的用户，欢迎您使用本服务。本条例旨在规范您的使用行为，确保服务的合法、合规和安全。<br id="v29">仅供学习参考，禁止用于商业用途。</p> 
+  <center id="v31"> 
+   <img src="IMG_20250308_183624.png" alt="图片" id="v30" width="80"> 
+   <p id="v32">觉得很赞就给点零花钱吧<br id="v33">໒꒰ྀི ∩⸝⸝∩ ꒱ྀི১<br id="v34">ദ്ദി˶•̀֊•́)✧</p> <br>
+   <p>---念网创·开发---</p>
+  </center>  
+ </body>
+</html>

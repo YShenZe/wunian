@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* 美化弹窗的CSS样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: ;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .modal-content p {
+            margin: 15px 0;
+            color: #666;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn-confirm {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background-color: #45a049;
+        }
+
+        /* 垂直滑动容器样式 */
+        .scroll-container {
+            width: 100%;
+            height: 40%;
+            overflow-y: auto; /* 启用垂直滚动 */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        .content {
+            padding: 10px;
+        }
+
+        .content-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面内容 -->
+    <h1>欢迎访问本页面</h1>
+    <p>该程序于2025年5月1日凌晨00:00关闭，届时您将无法使用我们的服务。<br>如果你处于服务未关闭时期误入了这里，请重启应用。若重启应用无法解决，可以尝试清除数据。</p>
+    <div class="scroll-container">
+       <div class="content-item">
+          <center>
+           <h3>更新程序-当前版本4.8</h3>
+          </center>
+             <a href="https://jsdj.my.canvasite.cn/wxyyfabu">超链接</a>
+       </div>
+                    
+    <!-- 美化后的弹窗 -->
+    <div class="modal" id="dateModal">
+        <div class="modal-content">
+            <h2>您即将进入首页</h2>
+            <p>我们希望您能反复阅读用户协议:</p>
+            
+            <!-- 垂直滑动容器 -->
+            <div class="scroll-container">
+                <div class="content">
+                    <div class="content-item">
+                        <center>
+                        <h3>用户协议</h3>
+                        </center>
+                    </div>
+                    <div class="content-item">
+      <p>尊敬的用户，欢迎您使用本服务。本条例旨在规范您的使用行为，确保服务的合法、合规和安全。请您在使用前仔细阅读并理解以下条款：</p>
+      <h3>一、使用范围</h3>
+      <p>本服务仅供您个人学习、研究和欣赏使用。任何单位或个人不得将本服务用于商业用途或其他任何未经授权的用途。</p>
+      <h3>二、使用条件</h3>
+      <p>1. 您在使用本服务时，必须遵守中华人民共和国相关法律法规，不得利用本服务从事任何违法活动。</p>
+      <p>2. 您不得将本服务用于任何商业行为，包括但不限于广告、营销、销售等。</p>
+      <p>3. 您不得通过本服务获取、传播或使用任何受版权保护的内容，除非您已获得版权所有者的明确授权。</p>
+      <p>4. 您不得对本服务进行反向工程、解密、修改或尝试破坏其安全性。</p>
+      <p>5. 您不得利用本服务侵犯他人的合法权益，包括但不限于隐私权、知识产权等。</p>
+      <h3>三、禁止行为</h3>
+      <p>1. 严禁将本服务用于任何商业用途。</p>
+      <p>2. 严禁通过本服务传播任何违法、有害、淫秽、暴力或侵犯他人权益的内容。</p>
+      <p>3. 严禁利用本服务进行任何形式的网络攻击、数据窃取或其他非法活动。</p>
+      <p>4. 严禁对本服务的运行机制、数据结构或代码进行未经授权的访问、修改或传播。</p>
+      <p>5. 严禁通过本服务获取或传播任何受版权保护的内容，除非您已获得版权所有者的明确授权。</p>
+      <h3>四、责任声明</h3>
+      <p>1. 若您违反本条例的任何条款，您将承担由此产生的一切法律责任，并赔偿因此给服务提供者或其他第三方造成的损失。</p>
+      <p>2. 服务提供者有权在发现违反本条例的行为后，立即暂停或终止您的使用权限，且不承担任何由此产生的责任。</p>
+      <p>3. 服务提供者不对您因使用本服务而遭受的任何直接或间接损失负责，包括但不限于数据丢失、隐私泄露等。</p>
+      <p>4. 服务提供者保留对本条例的最终解释权，并有权在任何时候对条例进行修改，修改后的条例将立即生效。</p>
+      <h3>五、服务期限</h3>
+      <p>本服务的使用期限为自您开始使用之日起截止2025年5月1日00:00，2025年5月1日00:00后，您将无法继续使用本服务，且服务提供者将删除与您使用本服务相关的所有数据和信息。</p>
+      <h3>六、附则</h3>
+      <p>本条例自发布之日起生效，服务提供者有权根据实际情况对条例进行调整和补充，调整后的条例将及时通知用户。</p>
+      <br>
+      <p>感谢您对本服务的支持与理解，请您在使用过程中严格遵守本条例的各项规定。</p>
+      <p>[念网创]</p>
+      <p>[2025年3月8日]</p>
+      <center>
+      <img src="IMG_20250308_183624.png"/ width="100">
+      </center>
+      <h4>觉得很赞,就让我做得更好吧!</h4>
+      <p>↓↓反馈收集↓↓</p>
+      <a href="https://v.kuaishou.com/nyYa5p" >快手：[念网创]</a>
+      <br>
+      <a href="https://b23.tv/mtSMzNg">bilibili：[念网创]</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-confirm" id="confirmBtn">同意并继续进入首页</button>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时立即执行
+        (function() {
+            // 获取当前日期
+            var currentDate = new Date();
+            // 设置目标日期为2025年5月1日（注意：月份从0开始计数，所以5月是4）
+            var targetDate = new Date(2025, 4, 1);
+            
+            // 获取弹窗元素
+            var modal = document.getElementById('dateModal');
+            var confirmBtn = document.getElementById('confirmBtn');
+            
+            // 比较当前日期和目标日期
+            if (currentDate < targetDate) {
+                // 显示弹窗
+                modal.style.display = 'flex';
+            }
+            
+            // 确定按钮点击事件
+            confirmBtn.onclick = function() {
+                // 跳转到index(1).html
+                window.location.href = "index(1).html";
+            };
+            
+            // 点击模态框外部关闭弹窗
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+            
+            // 按下ESC键关闭弹窗
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    modal.style.display = 'none';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

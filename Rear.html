@@ -1,0 +1,67 @@
+<html>
+ <head> 
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <title></title> 
+  <script src="js/jq.js"></script> 
+  <style>
+    .fullscreen-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .fullscreen-image img {
+      max-width: 90%;
+      max-height: 90%;
+      cursor: pointer;
+    }
+  </style>
+ </head> 
+ <body id="v1"> 
+  <h2 id="v2">不想埋没在数亿人海之中</h2> 
+  <p id="v3">你好！我是一名学生，从初二开始到现在一直都在思考，信息技术发展得这么快，真的能有我的一席之地吗？如今信息技术在AI人工智能领域发展较为快速。初二的时候我在想，我学习信息技术，可以搭乘这辆特快列车，现在发现这辆车对我来说太快了，只靠双腿的我追不上。不过，看到许多成功案例后，我决定不再隐藏自己，去寻找适合自己的路，哪怕慢一点，但至少可以稳稳地走。<br id="v4"><br id="v5"> 比如在农业领域，河南云飞科技开发的「AI虫情测报灯」利用AI技术实现了对害虫的自动监测和预测，有效减少了农药使用量，同时提高了作物产量。还有广西钢铁集团，通过AI系统实时监控炼钢过程中的火焰颜色、形状和亮度，减少了人工误判，提升了生产效率。这些案例让我明白，AI技术并不是高不可攀，它已经在很多传统领域落地生根，帮助人们解决了实际问题。<br id="v6"><br id="v7"> 在教育领域，也有不少成功案例。比如MathGPT，由好未来公司开发，主要面向全球数学爱好者和科研机构，利用AI技术在数学教育和研究领域发挥作用。这让我相信，只要找到合适的切入点，AI也能为教育带来改变。<br id="v8"> 这些案例让我明白，AI的应用场景非常广泛，它并不是遥不可及的高科技，而是可以融入到我们生活的方方面面。我也可以从自己感兴趣的领域出发，慢慢学习和探索，找到属于自己的位置。</p> 
+  <center>
+    <div class="image-container">
+      <img src="qrcode_1741430262343_edit_76375771865858.jpg" width="100xp" class="thumbnail" data-fullscreen-src="qrcode_1741430262343_edit_76375771865858.jpg">
+      <img src="tx.png" alt="图片" id="v9" width="100xp" class="thumbnail" data-fullscreen-src="tx.png">
+      <img src="IMG183624.png" width="100xp" class="thumbnail" data-fullscreen-src="IMG183624.png">
+    </div>
+    <p>QQ群-------勿念-------赞赏码</p>
+    <p>---开发者：念网创---</p>
+    <p>GitCode：@GITWUNIAN</p>
+    <a href="https://qm.qq.com/q/a3XIXxNe7u"><p>QQ群：1038095492</p></a>
+  </center>
+
+  <div class="fullscreen-image">
+    <img src="" alt="Full Screen Image">
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      const fullscreenImage = document.querySelector('.fullscreen-image');
+      const fullscreenImg = fullscreenImage.querySelector('img');
+
+      thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function() {
+          const fullSrc = this.getAttribute('data-fullscreen-src');
+          fullscreenImg.src = fullSrc;
+          fullscreenImage.style.display = 'flex';
+        });
+      });
+
+      fullscreenImage.addEventListener('click', function(e) {
+        if (e.target === fullscreenImage || e.target === fullscreenImg) {
+          fullscreenImage.style.display = 'none';
+        }
+      });
+    });
+  </script>
+ </body>
+</html>
