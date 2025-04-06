@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>壁纸</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 200vh;
+      overflow-y: auto;
+    }
+
+    #bt-img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://api.mmp.cc/api/pcwallpaper?category=cartoon&type=jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -1;
+    }
+
+    .content {
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 1000;
+    }
+
+    .nav button {
+      background-color: rgba(0, 0, 0, 0.0);
+      color: white;
+      text-shadow: 2px 2px 2px black;
+      font-size: 12px;
+      padding: 5px 10px;
+      margin-left: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav button:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 2px black;
+      font-size: 12px;
+      padding: 5px;
+      background-color: rgba(0, 0, 0, 1);
+      display: none; /* 初始状态下隐藏 */
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="bt-img"></div>
+  
+  <div class="nav">
+    <button onclick="refreshBackground()">刷新</button>
+    <a href=""><button>首页</button></a>
+  </div>
+
+  <div class="footer" id="footer">
+     温馨提示：横屏观看效果更佳哦。
+    <br><br><img src="../img/tx.png"/ width="50"><br><br>
+    ---念网创·开发---
+  </div>
+
+  <script>
+    function refreshBackground() {
+      const btImg = document.getElementById('bt-img');
+      btImg.style.backgroundImage = 'url(https://api.mmp.cc/api/pcwallpaper?category=cartoon&type=jpg&t=' + Date.now() + ')';
+    }
+
+    // 检测滚动位置并显示/隐藏底部文本
+    window.addEventListener('scroll', function() {
+      const footer = document.getElementById('footer');
+      const scrollHeight = document.body.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // 当滚动到底部时显示底部文本
+      if (scrollTop + windowHeight >= scrollHeight - 10) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    });
+
+    // 页面加载完成后检查一次
+    window.onload = function() {
+      window.dispatchEvent(new Event('scroll'));
+    };
+  </script>
+  <script src="https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1743230927974/Click Animation.txt"></script>
+</body>
+</html>

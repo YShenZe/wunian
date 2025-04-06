@@ -1,14 +1,11 @@
 <html>
-  
- <head>
-  <meta charset="UTF-8">
+ <head></head> 
+ <body id="v35" style="background-image: url(&quot;img/bg.jpg&quot;);"> 
   <meta id="v24" charset="UTF-8"> 
   <meta id="v25" name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title id="v26">无限影院-念网创</title> 
- </head> 
-   <img src="bt.png" id="bt-img" width="100%"> 
- <body id="v35" style="background-image: url(&quot;bj/bg3.jpg&quot;);"> 
-  <div class="btbj"></div>
+  <title id="v26">视频解析页</title> 
+  <img src="../img/bt.png" id="bt-img" width="100%"> 
+  <div id="v36" class="btbj"></div> 
   <script>
     // 定义点击计数器和定时器
     let clickCount = 0;
@@ -36,11 +33,17 @@
             clearTimeout(clickTimer); // 清除定时器
             clickTimer = null; // 重置定时器
             clickCount = 0; // 重置点击计数
-            window.location.href = 'Rear.html'; // 跳转到Rear.html
+            window.location.href = 'and/author.html'; // 跳转到Rear.html
         }
     });
-</script>
+</script> 
   <style id="v22">
+  .wdzsm {
+            border-radius: 10px; /* 设置圆角大小 */
+            width: 80px; /* 设置图片宽度 */
+            height: 80px; /* 设置图片高度 */
+            object-fit: cover; /* 保证图片填充整个区域 */
+        }
   .btbj {
       position: fixed; /* 固定背景图片 */
       top: 0;
@@ -53,6 +56,16 @@
       background-attachment: fixed; /* 固定背景图片 */
       z-index: -1; /* 确保背景图片在其他内容的后面 */
     }
+       .ziti {
+            color: black; /* 字体颜色为白色 */
+            text-shadow: 
+                -1px -1px 0 #ffffff, /* 左上黑色阴影 */
+                 1px -1px 0 #ffffff, /* 右上黑色阴影 */
+                -1px 1px 0 #ffffff,  /* 左下黑色阴影 */
+                 1px 1px 0 #ffffff;  /* 右下黑色阴影 */
+            font-size: 21px; /* 字体大小 */
+            font-weight: bold; /* 字体加粗 */
+        }
        p {
             color: white; /* 字体颜色为白色 */
             text-shadow: 
@@ -312,13 +325,13 @@
             });
         });
       
-    </script>
-  <h2 id="v27">请仔细用户使用条例</h2> 
+    </script> 
+  <h2 id="v27" class="ziti">请仔细用户使用条例</h2> 
   <p id="v28">尊敬的用户，欢迎您使用本服务。本条例旨在规范您的使用行为，确保服务的合法、合规和安全。<br id="v29">仅供学习参考，禁止用于商业用途。</p> 
   <center id="v31"> 
-   <img src="IMG_20250308_183624.png" alt="图片" id="v30" width="80"> 
-   <p id="v32">觉得很赞就给点零花钱吧<br id="v33">໒꒰ྀི ∩⸝⸝∩ ꒱ྀི১<br id="v34">ദ്ദി˶•̀֊•́)✧</p> <br>
-   <p>---念网创·开发---</p>
+   <img src="../img/IMG183624.png" alt="图片" id="v30" width="80" class="wdzsm"> 
+   <p id="v32">觉得很赞就给点零花钱吧<br id="v33">(´つヮ⊂︎)<br id="v34">ദ്ദി˶•̀֊•́)✧</p> 
   </center>  
  </body>
+ <script src="../js/Click Animation.js"></script>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悬浮按钮与iframe内容</title>
+    <style>
+        /* 按钮的公共样式 */
+        .floating-button {
+            position: fixed;
+            top: 10px; /* 距离页面顶部的距离 */
+            z-index: 1000; /* 确保按钮在页面顶部显示 */
+            background-color: #007bff; /* 按钮背景颜色 */
+            color: white; /* 按钮文字颜色 */
+            padding: 10px 20px; /* 按钮内边距 */
+            border: none; /* 去掉边框 */
+            border-radius: 5px; /* 圆角边框 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        /* 鼠标悬停时的样式 */
+        .floating-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 不同按钮的定位 */
+        #usage-btn {
+            left: 10px; /* “使用方法”按钮距离左侧的距离 */
+        }
+        #about-btn {
+            left: 110px; /* “关于网站”按钮距离左侧的距离 */
+        }
+        #author-btn {
+            left: 210px; /* “作者有话说”按钮距离左侧的距离 */
+        }
+
+       html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 防止滚动条出现 */
+        }
+        #content-iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* 去掉边框 */
+        }
+        /* 按钮样式 */
+        .btn-group {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        .btn-group button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 使用方法按钮 -->
+    <button id="usage-btn" class="floating-button">使用方法</button>
+    <!-- 关于网站按钮 -->
+    <button id="about-btn" class="floating-button">关于网站</button>
+    <!-- 作者有话说按钮 -->
+    <button id="author-btn" class="floating-button">作者有话说</button>
+
+    <!-- iframe -->
+    <iframe id="content-iframe"></iframe>
+
+    <script>
+        // 定义内容
+        const content = {
+            usage: `
+                <body id="v3"> <br><br>
+                  <iframe src="./and/usage.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                </body>
+            `,
+            about: `
+                <body id="v2"> <br><br>
+                  <iframe src="./and/about.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                </body>
+            `,
+            author: `
+                <body id="v1"> <br><br>
+                  <iframe src="./and/author.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                </body>
+            `,
+        };
+
+        // 获取iframe
+        const iframe = document.getElementById('content-iframe');
+
+        // 更新iframe内容的函数
+        function updateIframeContent(htmlContent) {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(htmlContent);
+            iframeDoc.close();
+        }
+
+        // 为按钮添加点击事件
+        document.getElementById('usage-btn').addEventListener('click', () => {
+            updateIframeContent(content.usage);
+        });
+
+        document.getElementById('about-btn').addEventListener('click', () => {
+            updateIframeContent(content.about);
+        });
+
+        document.getElementById('author-btn').addEventListener('click', () => {
+            updateIframeContent(content.author);
+        });
+
+        // 页面加载时默认显示“使用方法”的内容
+        document.addEventListener('DOMContentLoaded', () => {
+            updateIframeContent(content.usage);
+        });
+    </script>
+</body>
+</html>

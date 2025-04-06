@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load HTML from TXT</title>
+    <style>
+        /* 设置iframe全屏，无边框和阴影 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #myIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            box-shadow: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="myIframe"></iframe>
+
+    <script>
+        // 使用 fetch 或 AJAX 加载 .txt 文件
+        fetch('../index.txt')
+            .then(response => response.text())
+            .then(htmlContent => {
+                // 获取 iframe 的文档对象
+                const iframe = document.getElementById('myIframe');
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                
+                // 将 HTML 内容注入到 iframe 中
+                iframeDocument.open();
+                iframeDocument.write(htmlContent);
+                iframeDocument.close();
+            })
+            .catch(error => console.error('Error loading file:', error));
+    </script>
+</body>
+</html>

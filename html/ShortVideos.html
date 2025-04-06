@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短视频-念网创</title>
+    <style>
+    /* 设置滚动文本的样式 */
+        .scroll-text {
+            position: fixed; /* 固定在页面顶端 */
+            top: 22px;
+            left: 100px;
+            width: 750px;
+            height: 50px; /* 可根据需要调整高度 */
+            color: white; /* 字体颜色设置为黑色 */
+            font-size: 12px; /* 字体大小 */
+            line-height: 50px; /* 文本垂直居中 */
+            text-align: center; /* 文本水平居中 */
+            white-space: nowrap; /* 使文本在一行内显示 */
+            overflow: hidden; /* 隐藏超出部分 */
+            z-index: 3000; /* 设置为最高层级，悬浮于所有元素上方 */
+            pointer-events: none; /* 点击时穿透到下方元件 */
+        }
+
+        /* 悬浮图片的容器 */
+        .floating-image-container {
+            position: fixed; /* 固定定位，不会影响其他元素 */
+            top: 10%;
+            left: 95%;
+            transform: translate(-90%, 15%);
+            z-index: 3000; /* 确保悬浮在最上层 */
+        }
+
+        /* 悬浮图片的样式 */
+        .floating-image {
+            width: 150px;
+            height: 70px;
+            background-image: url('../img/1.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 0; /* 可选，使图片显示为圆形 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0); /* 添加阴影效果 */
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .button-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #000000;
+            overflow-x: auto;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        .button-bar button {
+            display: inline-block;
+            margin: 9px 1px;
+            padding: 8px 8px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+        .button-bar button.active {
+            background-color: orange;
+        }
+        .iframe-container {
+            margin-top: 60px;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .refresh-button {
+            position: fixed;
+            right: 1px;
+            top: 50%;
+            height: 50px;
+            width: 25px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .refresh-button span {
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- 悬浮图片的容器 -->
+    <div class="floating-image-container">
+        <div class="floating-image"></div>
+    </div>
+<!-- 滚动文本容器 -->
+    <div class="scroll-text" id="scrollText">
+        欢迎各位观看，听说观看美女小视频可以帮助人们在忙碌的生活中放松身心，缓解压力哦。如果出现白屏或无法播放等情况请点击换一换按钮。
+    </div>
+        <div class="button-bar">
+        <button class="active" onclick="loadIframe('GaoZhiLiangXiaoJieJie', this)">推荐</button>
+        <button onclick="loadIframe('QingCun', this)">清纯</button>
+        <button onclick="loadIframe('NvDa', this)">女大</button>
+        <button onclick="loadIframe('NvGao', this)">女高</button>
+        <button onclick="loadIframe('ReWu', this)">热舞</button>
+        <button onclick="loadIframe('SheJie', this)">蛇姐</button>
+        <button onclick="loadIframe('ChuanDa', this)">穿搭</button>
+        <button onclick="loadIframe('jk', this)">JK穿搭</button>
+        <button onclick="loadIframe('HanFu', this)">汉服</button>
+        <button onclick="loadIframe('HeiSi', this)">黑手</button>
+        <button onclick="loadIframe('LuoLi', this)">萝莉</button>
+        <button onclick="loadIframe('TianMei', this)">甜妹</button>
+        <button onclick="loadIframe('BaiSi', this)">白丝</button>
+    </div>
+    <div class="iframe-container">
+        <iframe id="videoIframe" src="http://api.mmp.cc/api/ksvideo?type=mp4&id=GaoZhiLiangXiaoJieJie"></iframe>
+    </div>
+    <div class="refresh-button" onclick="refreshIframe()">
+        <span>换<br>一<br>换</span>
+    </div>
+
+    <script>
+        // 获取当前激活的按钮对应的 ID
+        function getActiveCategoryId() {
+            const activeButton = document.querySelector('.button-bar button.active');
+            if (activeButton) {
+                return activeButton.getAttribute('onclick').match(/'([^']+)'/)[1];
+            }
+            return null;
+        }
+
+        // 刷新 iframe 内容
+        function refreshIframe() {
+            const activeCategoryId = getActiveCategoryId();
+            if (activeCategoryId) {
+                const iframe = document.getElementById('videoIframe');
+                iframe.src = `http://api.mmp.cc/api/ksvideo?type=mp4&id=${activeCategoryId}`;
+            }
+        }
+
+        // 加载 iframe 内容并更新按钮状态
+        function loadIframe(id, button) {
+            // 移除所有按钮的 active 类
+            const buttons = document.querySelectorAll('.button-bar button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 给当前点击的按钮添加 active 类
+            button.classList.add('active');
+
+            // 加载 iframe 内容
+            const iframe = document.getElementById('videoIframe');
+            iframe.src = `http://api.mmp.cc/api/ksvideo?type=mp4&id=${id}`;
+        }
+      // 获取滚动文本容器
+        const scrollText = document.getElementById('scrollText');
+        // 设置滚动文本的初始位置
+        let scrollPosition = 0
+        const scrollInterval = 10; // 每1秒滚动一次
+        const scrollStep = 1; // 每次滚动1像素
+
+        // 定义滚动函数
+        function scrollTextFunc() {
+            // 更新滚动位置
+            scrollPosition -= scrollStep;
+            // 如果滚动到文本末尾，重置位置
+            if (scrollPosition < -scrollText.scrollWidth) {
+                scrollPosition = window.innerWidth; // 重置到屏幕宽度的位置
+            }
+            // 设置滚动位置
+            scrollText.style.transform = `translateX(${scrollPosition}px)`;
+        }
+
+        // 设置定时器，每隔指定时间滚动一次
+        setInterval(scrollTextFunc, scrollInterval);
+    </script>
+</body>
+</html>
