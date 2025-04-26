@@ -1,11 +1,10 @@
 <html>
- <head></head> 
- <body id="v35" style="background-image: url(&quot;img/bg.jpg&quot;);"> 
-  <meta id="v24" charset="UTF-8"> 
-  <meta id="v25" name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title id="v26">视频解析页</title> 
-  <img src="../img/bt.png" id="bt-img" width="100%"> 
-  <div id="v36" class="btbj"></div> 
+ <head></head>
+ <body>
+  <meta id="v24" charset="UTF-8">
+  <meta id="v25" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="v26">视频解析页</title> <img src="../img/bt.png" id="bt-img" width="100%">
+  <div id="v36" class="btbj"></div>
   <script>
     // 定义点击计数器和定时器
     let clickCount = 0;
@@ -36,7 +35,7 @@
             window.location.href = 'and/author.html'; // 跳转到Rear.html
         }
     });
-</script> 
+</script>
   <style id="v22">
   .wdzsm {
             border-radius: 10px; /* 设置圆角大小 */
@@ -212,41 +211,29 @@
         .input-group button {
             width: auto;
         }
-    </style> 
-  <script src="js/jq.js"></script> 
-  <div id="v2" class="container"> 
-   <h1 id="v3">视频解析播放器</h1> 
-   <div id="v4" class="form-row"> 
-    <div id="v5" class="form-group" style="flex: 2;"> 
-     <input type="text" id="search-input" placeholder="勿信广告(可能被境外势力插入广告)"> 
-    </div> 
-    <div id="v6" class="form-group" style="flex: 1;"> 
-     <button id="search-btn">搜索影片</button> 
-    </div> 
-   </div> 
-   <div id="v7" class="form-group select-group"> 
-    <select id="url-select"> <option id="v16" value="https://jx.hls.one/?url=" selected="">VIP解析接口1［最好用的］［强力推荐👍］</option> <option id="v17" value="https://jx.973973.xyz/?url=">VIP解析接口2［弹幕互动］［功能最多🔝］</option> <option id="v18" value="https://jx.nnxv.cn/tv.php?url=">简洁播放接口3［最简洁］</option> <option id="v19" value="https://g1907.top/?jx=">稳定接口4［最稳定］</option> <option id="v20" value="https://jx.hls.one/?url=">备用接口</option> </select> 
-   </div> 
-   <div id="v13" class="form-row"> 
-    <div id="v14" class="form-group" style="flex: 2;"> 
-     <input type="text" id="user-input" placeholder="请输入获取的VIP分享链接"> 
-    </div> 
-    <div id="v15" class="form-group" style="flex: 1; display: flex; gap: 10px;"> 
-     <button id="open-btn">播放</button> 
-     <button id="expand-btn">展开</button> 
-    </div> 
-   </div> 
-  </div> 
-  <!-- 弹窗 --> 
-  <div id="modal"> 
-   <button id="close-btn">×</button> 
-   <!-- 关闭按钮 --> 
-   <button id="fullscreen-btn" style="position: absolute; top: 521px; right: 85px; z-index: 1001;">全屏</button> 
-   <!-- 全屏按钮 --> 
-   <div id="modal-content"> 
-    <iframe id="iframe"></iframe> 
-   </div> 
-  </div> 
+    </style>
+  <script src="js/jq.js"></script>
+  <div id="v2" class="container">
+   <h1 id="v3">视频解析播放器</h1>
+   <div id="v4" class="form-row">
+    <div id="v5" class="form-group" style="flex: 2;"><input type="text" id="search-input" placeholder="勿信广告(可能被境外势力插入广告)">
+    </div>
+    <div id="v6" class="form-group" style="flex: 1;"><button id="search-btn">搜索影片</button>
+    </div>
+   </div>
+   <div id="v7" class="form-group select-group"><select id="url-select"> <option id="v16" value="https://jx.hls.one/?url=" selected>VIP解析接口1［最好用的］［强力推荐👍］</option> <option id="v17" value="https://jx.973973.xyz/?url=">VIP解析接口2［弹幕互动］［功能最多🔝］</option> <option id="v18" value="">�正在全力搜索中(接口已失效</option> <option id="v19" value="">�正在全力搜索中(接口已失效</option> <option id="v20" value="https://jx.hls.one/?url=">备用接口</option> </select>
+   </div>
+   <div id="v13" class="form-row">
+    <div id="v14" class="form-group" style="flex: 2;"><input type="text" id="user-input" placeholder="请输入获取的VIP分享链接">
+    </div>
+    <div id="v15" class="form-group" style="flex: 1; display: flex; gap: 10px;"><button id="open-btn">播放</button> <button id="expand-btn">展开</button>
+    </div>
+   </div>
+  </div> <!-- 弹窗 -->
+  <div id="modal"><button id="close-btn">×</button> <!-- 关闭按钮 --> <button id="fullscreen-btn" style="position: absolute; top: 521px; right: 85px; z-index: 1001;">全屏</button> <!-- 全屏按钮 -->
+   <div id="modal-content"><iframe id="iframe"></iframe>
+   </div>
+  </div>
   <script>
         // 默认选择第一个选项
         document.getElementById('url-select').addEventListener('change', function() {
@@ -325,13 +312,16 @@
             });
         });
       
-    </script> 
-  <h2 id="v27" class="ziti">请仔细用户使用条例</h2> 
-  <p id="v28">尊敬的用户，欢迎您使用本服务。本条例旨在规范您的使用行为，确保服务的合法、合规和安全。<br id="v29">仅供学习参考，禁止用于商业用途。</p> 
-  <center id="v31"> 
-   <img src="../img/IMG183624.png" alt="图片" id="v30" width="80" class="wdzsm"> 
-   <p id="v32">觉得很赞就给点零花钱吧<br id="v33">(´つヮ⊂︎)<br id="v34">ദ്ദി˶•̀֊•́)✧</p> 
-  </center>  
+    </script>
+  <h2 id="v27" class="ziti">请仔细用户使用条例</h2>
+  <p id="v28">尊敬的用户，欢迎您使用本服务。本条例旨在规范您的使用行为，确保服务的合法、合规和安全。<br id="v29">仅供学习参考，禁止用于商业用途。</p>
+  <center id="v31"><img src="../img/IMG183624.png" alt="图片" id="v30" width="80" class="wdzsm">
+   <p id="v32">觉得很赞就给点零花钱吧<br id="v33">(´つヮ⊂︎)<br id="v34">ദ്ദി˶•̀֊•́)✧</p>
+  </center>
+  <html>
+   <body>
+    <script src="../js/Click Animation.js"></script>
+   </body>
+  </html>
  </body>
- <script src="../js/Click Animation.js"></script>
 </html>

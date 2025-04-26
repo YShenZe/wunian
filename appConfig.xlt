@@ -1,10 +1,10 @@
 {
 	"appName": "无限影音",
 	"appPackageName": "top.wunian.wxyy",
-	"appVersionName": "5.8",
+	"appVersionName": "6.0",
 	"appVersionCode": 100000,
 	"data": {		
-		"启用顶栏": false,
+		"启用顶栏": true,
 		"顶栏标题": "工程2-1-5",
 		"顶栏颜色": "#ffa1ff94",
 		"横屏": false,
