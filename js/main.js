@@ -23,25 +23,37 @@ adjustIframeSize();
 // 监听窗口大小改变事件，动态调整 iframe 大小
 window.addEventListener('resize', adjustIframeSize);
 
-// 页面加载时立即执行
+// 修改后的页面加载时立即执行的代码块
 (function() {
-    // 获取当前日期
-    var currentDate = new Date();
-    // 设置目标日期为9999年9月9日
-    var targetDate = new Date(9999, 8, 9);
-
     // 获取弹窗元素
     var modal = document.getElementById('dateModal');
     var confirmBtn = document.getElementById('confirmBtn');
 
-    // 比较当前日期和目标日期
-    if (currentDate < targetDate) {
-        // 显示弹窗
+    // 计算下一个周一0点的时间
+    function getNextMonday() {
+        const today = new Date();
+        const day = today.getDay(); // 0=周日, 1=周一...6=周六
+        let daysToAdd = day === 0 ? 1 : 8 - day;
+        const nextMonday = new Date(today);
+        nextMonday.setDate(today.getDate() + daysToAdd);
+        nextMonday.setHours(0, 0, 0, 0); // 设置为下周一的0点
+        return nextMonday;
+    }
+
+    // 检查是否需要显示弹窗
+    const storedTime = parseInt(localStorage.getItem('consentUntil'));
+    const currentTime = Date.now();
+    
+    // 如果没有存储时间或当前时间超过存储时间，显示弹窗
+    if (!storedTime || currentTime >= storedTime) {
         modal.style.display = 'flex';
     }
 
     // 确定按钮点击事件
     confirmBtn.onclick = function() {
+        // 存储下一个周一的时间戳
+        const nextMonday = getNextMonday().getTime();
+        localStorage.setItem('consentUntil', nextMonday);
         modal.style.display = 'none';
     };
 
