@@ -61,13 +61,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 text.style.cssText = `
                     color: white;
                     font-weight: bold;
-                    font-size: 36px;
+                    font-size: 25px;
                     text-align: center;
                     position: absolute;
-                    top: 50%;
+                    top: 80%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+                    text-shadow: 2px 2px 4px rgba(0,0,0,1);
                     z-index: 10001;
                 `;
 
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 setTimeout(() => {
                     overlay.style.opacity = '0';
-                    overlay.style.transition = 'opacity 1s';
-                    setTimeout(() => overlay.remove(), 1000);
-                }, 2000);  // 1.5秒后淡出
+                    overlay.style.transition = 'opacity 2s';  // 2秒淡出
+                    setTimeout(() => overlay.remove(), 2000);  // 2秒后移除
+                }, 2000);  // 2秒后开始淡出
             }
         })
         .catch(error => console.error('加载节日信息失败:', error));
