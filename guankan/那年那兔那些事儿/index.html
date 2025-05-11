@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff7e00;
+            margin-bottom: 20px;
+        }
+        
+        #videoWindow {
+            width: 100%;
+            height: calc(100% * 9 / 16);
+            border: 2px solid #000000b3; /* 边框颜色 */
+            border-radius: 5px; /* 圆角为5 */
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ff7e00;
+        }
+
+        .fullscreen-button {
+            display: block;
+            margin: 20px auto 10px; /* 上边距20px，下边距10px */
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4caf50; /* 绿色背景 */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .fullscreen-button:hover {
+            background-color: #45a049; /* 绿色深色阴影 */
+        }
+
+        /* 季度切换按钮 */
+        .season-control {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .season-button {
+            padding: 0;
+            border: none;
+            background: none;
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+        }
+
+        .season-button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff7e00;
+            transition: width 0.3s;
+        }
+
+        .season-button:hover::after, .season-button.active::after {
+            width: 100%;
+        }
+
+        /* 集数按钮 */
+        .button-panel {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 15px 0;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            margin-left: 20px;
+            font-weight: bold; /* 加粗 */
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .episode-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            margin-left: 20px; /* 为按钮添加左侧空白 */
+        }
+
+        .episode-button {
+            display: inline-block;
+            margin: 5px 8px 5px 0;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #ffffff; /* 白色背景 */
+            color: #000000; /* 黑色字体 */
+            border: 1px solid #cccccc; /* 灰色边框 */
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .episode-button:hover {
+            background-color: #f0f0f0; /* 悬停时浅灰色背景 */
+        }
+
+        .episode-button.selected {
+            color: #fc2a3f; /* 选中时字体颜色为红色 */
+            font-weight: bold; /* 选中时字体加粗 */
+            background-color: #ffdddd; /* 选中时按钮颜色稍微变红 */
+        }
+
+        #subtitle {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 18px; /* 比标题字号小 */
+            color: #000000; /* 黑色字体 */
+        }
+    </style>
+</head>
+<body>
+    <h1 id="videoTitle">那年那兔那些事儿</h1>
+    
+    <iframe id="videoWindow" src="about:blank" frameborder="0"></iframe>
+    
+    <h2 id="subtitle"></h2> <!-- 显示季节和集数信息 -->
+    
+    <button class="fullscreen-button" onclick="goFullScreen()">全屏播放</button>
+            <div style="text-align: left;">
+               <p style="text-align: center; color: crimson;">第六季已从官方和各种视频网站失踪，正在全力搜寻中。如果视频无法播放，请联系开发者。</p>
+               <p style="text-align: center; color: crimson;">如果您在这里学习影视作品时出现问题请联系，邮箱：<a href="mailto:wunian@outlook.sg">wunian@outlook.sg</a></p>
+            </div>
+    <!-- 季度切换按钮 -->
+    <div class="season-control">
+        <button class="season-button active" onclick="changeSeason(1)">第一季</button>
+        <button class="season-button" onclick="changeSeason(2)">第二季</button>
+        <button class="season-button" onclick="changeSeason(3)">第三季</button>
+        <button class="season-button" onclick="changeSeason(4)">第四季</button>
+        <button class="season-button" onclick="changeSeason(5)">第五季</button>
+        <button class="season-button" onclick="changeSeason(6)">第六季</button>
+        <button class="season-button" onclick="changeSeason(7)">第七季</button>
+        <button class="season-button">持续更新中，目前官方已断更</button>
+    </div>
+    
+    <div class="button-panel">
+        <div class="section-title">选集播放</div>
+        <div class="episode-container">
+            <!-- 动态加载的集数按钮将在这里 -->
+        </div>
+    </div>
+
+    <script>
+        // 当前季度
+        let currentSeason = 1;
+        
+        // 模拟不同季度的集数URL
+        const seasonEpisodes = {
+            1: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep30478/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep30477/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep30476/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep30475/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep62679/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep62680/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep62681/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep63851/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep63852/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep63874/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep64042/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep64435/?share_source=copy_web',
+            ],
+            2: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep76675/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep79177/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep80486/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep81628/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep82344/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep82968/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep83495/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep84262/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep84717/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep85203/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep85735/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep86193/?share_source=copy_web',
+            ],
+            3: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep96743/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep96744/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep97014/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep97174/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep97268/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep97466/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep97986/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep98710/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep100826/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep101610/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep102053/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep102200/?share_source=copy_web',
+            ],
+            4: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep113181/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep113182/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep113601/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep113823/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep113824/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep114018/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep114231/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep115487/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep115702/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep116005/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep118775/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep112863/?share_source=copy_web',
+            ],
+            5: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep285053/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep285630/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep287592/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep289351/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep291707/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep292787/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep299870/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep304430/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep308563/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep311310/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep312273/?share_source=copy_web',
+            ],
+            6: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1kq4y197mz/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1pq4y1k7CE/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1rY411x7w8/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1jQ4y1i7AB/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1uD4y1c7NQ/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+                'https://jx.hls.one/?url=https://www.bilibili.com/video/BV1em4y1Q7J1/?share_source=copy_web&vd_source=0cfced574897c149c04e66ab868d0c0f',
+            ],
+            7: [
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438453/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438454/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438455/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438456/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438457/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438458/?share_source=copy_web',
+                'https://jx.hls.one/?url=https://www.bilibili.com/bangumi/play/ep1438459/?share_source=copy_web',
+            ]
+        };
+        
+        // 更新视频链接
+        function updateLink(link, button) {
+            // 移除之前选中的按钮样式
+            const buttons = document.querySelectorAll('.episode-button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            // 添加选中样式
+            button.classList.add('selected');
+
+            const iframe = document.getElementById('videoWindow');
+            iframe.src = link; // 直接设置iframe的src为传入的链接
+            const subtitleElement = document.getElementById('subtitle');
+            // 显示按钮上的文字
+            subtitleElement.textContent = `第${currentSeason}季 ${button.textContent}`;
+            subtitleElement.style.fontSize = "20px"; // 设置副标题字号
+            subtitleElement.style.color = "#000000"; // 设置副标题颜色为黑色
+
+            // 存储选择的按钮文本到本地存储
+            localStorage.setItem('selectedEpisode', button.textContent);
+        }
+
+        // 切换季度
+        function changeSeason(season) {
+            // 更新活动按钮状态
+            document.querySelectorAll('.season-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.season-button:nth-child(${season})`).classList.add('active');
+            
+            // 更新当前季度
+            currentSeason = season;
+            
+            // 更新集数按钮
+            updateEpisodeButtons();
+        }
+        
+        // 更新集数按钮
+        function updateEpisodeButtons() {
+            const episodeContainer = document.querySelector('.episode-container');
+            
+            // 清空现有按钮
+            while (episodeContainer.firstChild) {
+                episodeContainer.removeChild(episodeContainer.firstChild);
+            }
+            
+            // 添加新按钮
+            seasonEpisodes[currentSeason].forEach((episodeUrl, index) => {
+                const button = document.createElement('button');
+                button.className = 'episode-button';
+                button.innerText = `第${index + 1}集`;
+                button.onclick = () => updateLink(episodeUrl, button);
+                episodeContainer.appendChild(button);
+            });
+        }
+    </script>
+    <script src="./script.js"></script>
+</body>
+</html>
