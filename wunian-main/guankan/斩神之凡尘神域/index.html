@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放页面</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <h1 id="videoTitle" style="text-align: center; color: #ff7e00;">斩神之凡尘神域</h1>
+    <div>
+        <iframe id="videoWindow" src="about:blank" frameborder="0"></iframe>
+    </div>
+    <h2 id="subtitle"></h2> <!-- 显示集数信息 -->
+    <button class="fullscreen-button" onclick="goFullScreen()">全屏播放</button>
+    <div class="button-panel">
+        <div class="section-title">选集播放</div>
+        <div class="button-container">
+            <!-- 修复onclick中的链接 -->
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/u4100kftrz6.html', this)">第1集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/q4100oznabq.html', this)">第2集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/e4100qgiz3x.html', this)">第3集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/v4100x7gx99.html', this)">第4集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/q4100m81wul.html', this)">第5集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/r4100mj6irf.html', this)">第6集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/h4100aa01f6.html', this)">第7集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/t41009xirki.html', this)">第8集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/w410042h5zc.html', this)">第9集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/j4100mmw977.html', this)">第10集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/r4100c26ocg.html', this)">第11集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/k4100hhrrcf.html', this)">第12集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/y4100tz44n6.html', this)">第13集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/n4100hfbozk.html', this)">第14集</button>
+            <button class="episode-button" onclick="updateLink('https://jx.hls.one/?url=https://v.qq.com/x/cover/mzc002006znrsl7/d4100jmfe34.html', this)">第15集</button>
+                    </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

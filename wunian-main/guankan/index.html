@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影片选择页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .film-list {
+            list-style: none;
+            padding: 0;
+        }
+        .film-list li {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .film-list li:hover {
+            background: #e9e9e9;
+        }
+        .film-list label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .film-list input[type="radio"] {
+            margin-right: 10px;
+        }
+        .play-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+        .play-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>选择影片播放</h1>
+        <form id="film-form">
+            <ul class="film-list">
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="那年那兔那些事儿">
+                        <span style="color: crimson;"><b>置顶</b></span><span style="color: chocolate;"> - 《那年那兔那些事儿》</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="斩神之凡尘神域" required>
+                        影片1 - 《斩神之凡尘神域》
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="分手大师">
+                        影片2 - 《分手大师》
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="哪吒之魔童降世">
+                        影片3 - 《哪吒之魔童降世》
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="熊出没·重启未来">
+                        影片4 - 《熊出没·重启未来》
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="film" value="查理和巧克力工厂">
+                        影片5 - 《查理和巧克力工厂》
+                    </label>
+                </li>
+            </ul>
+            <button type="submit" class="play-button">播放</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('film-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const selectedFilm = document.querySelector('input[name="film"]:checked');
+            if (selectedFilm) {
+                // 根据选择的影片跳转到对应的页面
+                window.location.href = selectedFilm.value;
+            } else {
+                alert('请选择一个影片！');
+            }
+        });
+    </script>
+</body>
+</html>
